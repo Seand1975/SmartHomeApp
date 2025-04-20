@@ -19,3 +19,21 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Add project specific ProGuard rules here.
+# By default, the flags in this file are appended to flags specified
+# in the Android SDK tools proguard/proguard-android-optimize.txt.
+
+# Keep Jetpack Compose classes
+-keep class androidx.compose.** { *; }
+-dontwarn androidx.compose.**
+
+# Keep SQLite database classes
+-keep class com.example.notesapp.RoutineDatabase { *; }
+-keep class com.example.notesapp.RoutineTask { *; }
+
+# Keep SharedPreferences usage
+-keep class android.content.SharedPreferences { *; }
+-keep class android.content.SharedPreferences$Editor { *; }
+
+# Add any additional rules for other libraries if needed

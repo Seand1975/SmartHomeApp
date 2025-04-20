@@ -22,13 +22,13 @@ fun ThingsScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Grid-like Icon (using Apps icon as a placeholder for the 3 circles with a plus)
+        // Icon representing "No Things"
         Icon(
-            imageVector = Icons.Outlined.Apps,
+            imageVector = Icons.Outlined.AddCircleOutline,
             contentDescription = "No Things Icon",
             tint = Color.Gray,
             modifier = Modifier
-                .size(64.dp) // Larger size to match the image
+                .size(64.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -37,7 +37,7 @@ fun ThingsScreen() {
         Text(
             text = "No things!",
             style = MaterialTheme.typography.headlineMedium.copy(
-                fontSize = 24.sp // Slightly smaller than headlineMedium for better match
+                fontSize = 24.sp
             ),
             textAlign = TextAlign.Center,
             color = Color.Black

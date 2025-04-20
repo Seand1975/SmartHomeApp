@@ -20,10 +20,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-
 import kotlinx.coroutines.launch
 import java.time.LocalTime
-import java.time.LocalTime.of
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -283,6 +281,7 @@ fun TimePickerSection(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun RecurrenceSelector(
     selectedRecurrence: String,
@@ -293,22 +292,18 @@ fun RecurrenceSelector(
             text = "Recurrence:",
             style = MaterialTheme.typography.bodyLarge
         )
-
-        Row(
+        FlowRow(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            RecurrenceOption(
-                title = "Daily",
-                isSelected = selectedRecurrence == "Daily",
-                onClick = { onRecurrenceSelected("Daily") }
-            )
-
-            RecurrenceOption(
-                title = "Weekly",
-                isSelected = selectedRecurrence == "Weekly",
-                onClick = { onRecurrenceSelected("Weekly") }
-            )
+            listOf("Daily", "Weekly", "Monthly", "Yearly", "Weekdays", "Weekend").forEach { option ->
+                RecurrenceOption(
+                    title = option,
+                    isSelected = selectedRecurrence == option,
+                    onClick = { onRecurrenceSelected(option) }
+                )
+            }
         }
     }
 }
@@ -396,7 +391,7 @@ fun TimePickerDialog(
 
                     TextButton(
                         onClick = {
-                            onTimeSelected(of(hour, minute))
+                            onTimeSelected(LocalTime.of(hour, minute))
                         }
                     ) {
                         Text("OK")
