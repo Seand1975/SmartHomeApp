@@ -36,7 +36,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
 // Define the highlight color
-val highlightYellow = Color(0xFFFFEB3B)
+var highlightYellow = Color(0xFFFFEB3B)
 
 // Screen class for navigation destinations
 sealed class Screen(
